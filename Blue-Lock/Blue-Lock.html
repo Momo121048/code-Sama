@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sama Stream - Chainsaw Man</title>
+    <title>Sama Stream - Blue Lock</title>
 
     <!--=============== REMIXICONS ===============-->
     <link
@@ -153,69 +153,55 @@
       });
     </script>
 
-    <section class="video-player">
-        <div class="container-video">
-            <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </section>
+    
 
-
+    
     <main class="anime-details">
       <div class="anime-details__container">
-        <div class="anime-details__image">
-          <a href="/Chainsaw-man/Chainsaw-Man.html">
-            <img src="/image/image/chainsaw-man.jpg" alt="Anime Image" />
-          </a>
-          <a href="https://youtu.be/LD40dFHsJps" class="button">Regarder la bande d'annonce</a>
-        </div>
-        <div class="anime-details__info">
-          <h1 class="anime-details__title">Chainsaw Man</h1>
-          <p class="anime-details__date">2022</p>
-          <div class="anime-details__rating">
-            <div class="rating-circle">
-              <div class="rating-circle__inner">8.9</div>
-            </div>
-            <button id="add-to-watchlist" class="WatchList-Button">Ajouter à la Watchlist</button>
-          </div>
-          <p class="anime-details__summary">
-            Dans un monde où les démons naissent des peurs humaines, Denji, un jeune homme accablé par les dettes, fusionne avec son chien-démon tronçonneuse, Pochita, après une trahison mortelle. Devenu Chainsaw Man, il rejoint les chasseurs de démons pour survivre et rêver d'une vie simple, mais son existence bascule dans une spirale de violence et de sacrifices, face à des ennemis toujours plus puissants.
-          </p>
-          <p class="anime-details__country">Pays : Japon </p>
-          <p class="anime-details__genre">Genre : Animation</p>
-          <p class="anime-details__release">Date de sortie : 12 octobre 2022</p>
-        </div>
-        </div>
-      </main>
-
-      <script>
-        document.getElementById('add-to-watchlist').addEventListener('click', () => {
-          const anime = recommendedAnimes.find(anime => anime.title === "Chainsaw Man");
-          addToWatchlist(anime);
-      
-          // Changer le texte du bouton après l'ajout
-          const button = document.getElementById('add-to-watchlist');
-          button.textContent = "Ajouté à la Watchlist";
-          button.disabled = true; // Désactiver le bouton pour éviter les clics multiples
-        });
-      </script>
-
-   <!--==================== SEASONS AND EPISODES ====================-->
-   <section class="seasons">
-    <div class="seasons__list">
-      <div class="dropdown">
-        <button class="dropbtn">Saisons</button>
+      <div class="anime-details__image">
+        <img src="/image/image/Blue-Lock.jpg" alt="Anime Image" />
       </div>
+      <div class="anime-details__info">
+        <h1 class="anime-details__title">Blue Lock</h1>
+        <p class="anime-details__date">2022</p>
+        <div class="anime-details__rating">
+          <div class="rating-circle">
+            <div class="rating-circle__inner">6.7</div>
+          </div>
+          <button id="add-to-watchlist" class="WatchList-Button">Ajouter à la Watchlist</button>
+        </div>
+        <p class="anime-details__summary">
+          Coupe du monde 2018, l'équipe de football du Japon est éliminée en huitièmes de finale... Ce nouvel échec incite l'Union japonaise de football à fonder le "Blue Lock" : un centre de formation révolutionnaire rassemblant les 300 meilleurs attaquants lycéens du pays.
+          L'objectif du coach du Blue Lock, Jinpachi Ego, est clair : détecter l'unique attaquant qui écrasera tous ses rivaux par son talent et son hyper-individualisme !
+        </p>
+        <p class="anime-details__country">Pays : Japan</p>
+        <p class="anime-details__genre">Genre : Animation</p>
+        <p class="anime-details__release">Date de sortie : 8 octobre 2022 </p>
+        <a href="/Blue-Lock/Episode.html" class="button">Regarder le premier épisode</a>
+      </div>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('add-to-watchlist').addEventListener('click', () => {
+        const anime = recommendedAnimes.find(anime => anime.title === "Chainsaw Man");
+        addToWatchlist(anime);
+    
+        // Changer le texte du bouton après l'ajout
+        const button = document.getElementById('add-to-watchlist');
+        button.textContent = "Ajouté à la Watchlist";
+        button.disabled = true; // Désactiver le bouton pour éviter les clics multiples
+      });
+    </script>
+
+   <!--==================== SEASONS ====================-->
+  <section class="seasons">
+    <h2>Saisons</h2>
+    <div class="seasons__list" id="seasonsList">
+      <!-- Les cartes des saisons seront ajoutées ici dynamiquement -->
     </div>
   </section>
-
-  <section class="episodes">
-        <h2>Épisodes</h2>
-        <div class="episodes__list" id="episodesList">
-            <!-- Les épisodes seront ajoutés ici dynamiquement -->
-        </div>
-    </section>
-
-
+    
 
     <section class="recommended">
       <h2>Recommandé pour vous</h2>
@@ -226,9 +212,9 @@
       <button id="next-page-button" class="next-page-button">Page Suivante</button>
     </section>
 
-  <script src="/Chainsaw-man/Episode-Chainsaw-Man.js"></script>
-  <script src="/js/Recommandation.js"></script>
-  <script src="/js/script.js"></script>
-  <script src="/js/barre de rechercge.js"></script>
-</body>
+    <script src="/Blue-Lock/Episode-Blue-Lock.js"></script>
+    <script src="/js/Recommandation.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/barre de rechercge.js"></script>
+  </body>
 </html>
