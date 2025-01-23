@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sama Stream - One Piece</title>
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <link
+      rel="website icon"
+      type="png"
+      href="/image/Logo/Sans titre (Logo).png"
+    />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <ul class="sidebar-links">
+        <li>
+          <a href="/Category/Animé.html"
+            ><span class="material-symbols-outlined"> tv_gen</span
+            >Animé</a
+          >
+        </li>
+        <li>
+          <a href="/Category/Films.html"
+            ><span class="material-symbols-outlined"> theaters </span>Films</a
+          >
+        </li>
+        <li>
+          <a href="/Category/Séries.html"
+            ><span class="material-symbols-outlined"> movie </span>Séries</a
+          >
+        </li>
+        <h4>
+          <div class="menu-separator"></div>
+        </h4>
+        <li>
+          <a href="/Category/Tendances.html"
+            ><span class="material-symbols-outlined"> trending_up </span
+            >Tendances</a
+          >
+        </li>
+        <li>
+          <a href="/Category/Demande-d-ajouts.html"
+            ><span class="material-symbols-outlined"> laps </span>Demande
+            d'ajouts</a
+          >
+        </li>
+        <li>
+          <a href="/Category/Aide.html"
+            ><span class="material-symbols-outlined"> help </span>Aide</a
+          >
+        </li>
+        <h4>
+          <div class="menu-separator"></div>
+        </h4>
+        <li>
+          <a href="/Category/Profile.html"
+            ><span class="material-symbols-outlined"> account_circle </span
+            >Profile</a
+          >
+        </li>
+        <li>
+          <a href="/Category/Parametre.html"
+            ><span class="material-symbols-outlined"> settings </span
+            >Parametre</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="/Sama-Stream.html" class="nav__logo-link">
+          <div class="nav__logo-container">
+            <img src="/image/Logo/En-tête.png" alt="Logo" />
+            <span>Sama Stream</span>
+          </div>
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="/Sama-Stream.html" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item has-sous-nav">
+              <a  class="nav__link">Parcourir</a>
+              <ul class="sous-nav">
+                <li><a href="/Category/Films.html">Film</a></li>
+                <li><a href="/Category/Séries.html">Série</a></li>
+                <li><a href="/Category/Animé.html">Animé</a></li>
+              </ul>
+            </li>
+
+            <li class="nav__item">
+              <a href="/Category/Aide.html" class="nav__link">Aide</a>
+            </li>
+
+            <li class="nav__item">
+              <a href="/Category/Parametre.html" class="nav__link">Parametre</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nav__actions">
+           <!-- Search button -->
+           <i class="ri-search-line nav__search" id="search-btn"></i>
+
+          <!-- notif button -->
+          <i class="bx bx-bell nav__notifications" id="notifications-btn"></i>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== SEARCH ====================-->
+    <div class="search" id="search">
+      <form action="" class="search__form">
+        <i class="ri-search-line search__icon"></i>
+        <input
+          type="search"
+          placeholder="Recherchez des films, séries, animés.."
+          class="search__input"
+          id="searchInput"
+          oninput="filterAnimes()"
+        />
+      </form>
+      <i class="ri-close-line search__close" id="search-close"></i>
+      <!-- Liste des résultats -->
+      <ul id="resultsList"></ul>
+    </div>
+
+    <script>
+      document.getElementById("search-btn").addEventListener("click", () => {
+        document.getElementById("search").classList.add("show-search");
+      });
+      document.getElementById("search-close").addEventListener("click", () => {
+        document.getElementById("search").classList.remove("show-search");
+      });
+    </script>
+
+    
+
+    
+    <main class="anime-details">
+      <div class="anime-details__container">
+      <div class="anime-details__image">
+        <img src="/image/image/one-piece.jpg" alt="Anime Image" />
+      </div>
+      <div class="anime-details__info">
+        <h1 class="anime-details__title">One Piece</h1>
+        <p class="anime-details__date">1999</p>
+        <div class="anime-details__rating">
+          <div class="rating-circle">
+            <div class="rating-circle__inner">8.7</div>
+          </div>
+        </div>
+        <p class="anime-details__summary">
+          Il fut un temps où Gold Roger était le plus grand de tous les pirates, le "Roi des Pirates" était son surnom. A sa mort, son trésor d'une valeur inestimable connu sous le nom de "One Piece" fut caché quelque part sur "Grand Line". De nombreux pirates sont partis à la recherche de ce trésor mais tous sont morts avant même de l'atteindre. Monkey D. Luffy rêve de retrouver ce trésor légendaire et de devenir le nouveau "Roi des Pirates". Après avoir mangé un fruit du démon, il possède un pouvoir lui permettant de réaliser son rêve. Il lui faut maintenant trouver un équipage pour partir à l'aventure !
+        </p>
+        <p class="anime-details__country">Pays : Japan</p>
+        <p class="anime-details__genre">Genre : Comédie Animation</p>
+        <p class="anime-details__release">Date de sortie : 20 oct. 1999</p>
+        <a href="/One-Piece/Arc/East Blue.html" class="button">Regarder le premier épisode</a>
+      </div>
+      </div>
+    </main>
+
+    <!--==================== SEASONS AND EPISODES ====================-->
+    <!--==================== SEASONS AND EPISODES ====================-->
+   <section class="seasons">
+      <div class="dropdown">
+        <button class="dropbtn">Saisons</button>
+      
+      </div>
+    </div>
+  </section>
+  <section class="episodes">
+    <h2>Épisodes</h2>
+    <div class="episodes__list" id="episodesList">
+      <!-- Les épisodes seront ajoutés ici dynamiquement -->
+    </div>
+  </section>
+
+
+    
+
+    <section class="recommended">
+      <h2>Recommandé pour vous</h2>
+      <div class="recommended-container">
+        <!-- Les cartes recommandées seront ajoutées ici -->
+      </div>
+      <button id="prev-page-button" class="prev-page-button" style="display: none;">Page Précédente</button>
+      <button id="next-page-button" class="next-page-button">Page Suivante</button>
+    </section>
+
+    <script src="/One-Piece/One---piece.js"></script>
+    <script src="/js/Recommandation.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/barre de rechercge.js"></script>
+  </body>
+</html>

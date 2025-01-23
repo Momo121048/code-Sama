@@ -1,0 +1,1345 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 90%;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: rgb(110, 16, 16);
+  padding: 25px 20px;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.sidebar:hover {
+  width: 300px;
+}
+
+.sidebar-links {
+  list-style: none;
+  margin-top: 25px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sidebar-links h4 span {
+  opacity: 0;
+}
+
+.sidebar:hover .sidebar-links h4 span {
+  opacity: 1;
+}
+
+.sidebar-links h4 {
+  color: #fff;
+  font-weight: 600;
+  margin: 10px 0;
+  white-space: nowrap;
+  position: relative;
+}
+
+.sidebar-links .menu-separator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(1);
+  transform: translateY(-50%);
+  background: #fff;
+  transform-origin: right;
+  transition-duration: 0.2s;
+}
+
+.sidebar:hover .sidebar-links .menu-separator {
+  transition-delay: 0s;
+}
+
+.sidebar-links li a {
+  display: flex;
+  color: #fff;
+  font-weight: 600;
+  align-items: center;
+  gap: 0 20px;
+  padding: 15px 10px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar-links li a:hover {
+  background: #ffffff2d;
+  color: #fff;
+  border: 4px;
+}
+
+.bx bx-tv{
+  font-size: 40px
+}
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --title-color: rgb(255, 255, 255);
+  --text-color: #ffffff;
+  --container-color: hwb(0 6% 58%);
+  --border-color: hsl(225, 67%, 1%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Syne", sans-serif;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1023px) {
+  :root {
+    --h2-font-size: 1.5rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+
+body {
+  background-color: #151515;
+  color: white; /* Assurez-vous que la couleur du texte est visible */
+  min-height: 100vh; /* Ajustez la hauteur minimale */
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.header,
+.nav {
+  margin: 0;
+  padding: 0;
+}
+
+.nav__search,
+.nav__notifications{
+  margin: 10px;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+
+.main {
+  position: relative;
+  height: 100vh;
+}
+
+.main__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.search,
+.login {
+  position: fixed;
+  left: 15px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  background-color: hsla(230, 75%, 15%, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* For safari */
+  padding: 8rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.search__close,
+.login__close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.ri-user-line {
+  padding: 20px;
+}
+
+.nav__actions{
+  position: relative;
+  left: -50px; /* Ajustez cette valeur selon vos besoins */
+}
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(110, 16, 16);
+  z-index: var(--z-fixed);
+  height: 4.3rem;
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  position: relative;
+}
+
+.nav__logo-container {
+  display: flex;
+  align-items: center; /* Aligne le logo et le texte verticalement au centre */
+  justify-content: flex-start; /* Place les éléments à gauche */
+  font-family: "Poppins", sans-serif;
+}
+
+.nav__logo-container img {
+  width: 110px; /* Ajustez la taille du logo selon vos besoins */
+  height: auto;
+}
+
+.nav__logo-container span {
+  color: white; /* Couleur du texte */
+  font-size: 1.5rem; /* Taille du texte */
+  font-family: "Poppins", sans-serif;
+}
+
+.nav__logo-link {
+  text-decoration: none; /* Supprime le soulignement par défaut */
+  display: flex; /* Assure que le lien adopte le comportement flex du conteneur */
+  align-items: center; /* Aligne les éléments verticalement */
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.nav__search,
+.nav__login,
+.nav__notifications,
+.nav__toggle,
+.nav__close {
+  font-size: 1.25rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.4s;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5rem;
+  text-align: center;
+}
+
+.nav__link {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color 0.4s;
+}
+
+.nav__close {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu {
+  top: 0;
+}
+
+/* Style de la sous-navigation */
+.sous-nav {
+  list-style: none;
+  display: none;
+  position: absolute;
+  top: 37px; /* Position juste en dessous de l'élément parent */
+  left: -10px;
+  background: rgb(110, 16, 16); /* Couleur de fond */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+  padding: 10px 0; /* Espacement vertical */
+  z-index: 100; /* Assurez-vous qu'il soit au-dessus des autres éléments */
+  min-width: 150px; /* Largeur minimale */
+}
+
+/* Style des liens dans la sous-navigation */
+.sous-nav li a {
+  display: block;
+  padding: 10px 20px; /* Espacement interne */
+  color: white; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement */
+  font-size: 16px; /* Taille du texte */
+  transition: background 0.3s, color 0.3s; /* Animation douce */
+}
+
+/* Effet au survol des liens */
+.sous-nav li a:hover {
+  background: #f2f2f2; /* Couleur de fond au survol */
+  color: rgb(110, 16, 16); /* Couleur du texte au survol */
+}
+
+/* Style de l'élément parent avec sous-navigation */
+.has-sous-nav {
+  position: relative;
+}
+
+/* Afficher la sous-navigation au survol */
+.has-sous-nav:hover .sous-nav {
+  display: block;
+}
+
+/* Style du lien principal */
+.nav__link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Effet au survol du lien principal */
+.nav__link:hover {
+  background: #f2f2f2; /* Fond clair */
+  color: rgb(110, 16, 16); /* Texte foncé */
+}
+
+/*=============== SEARCH ===============*/
+.search__form {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: var(--container-color);
+  box-shadow: 0 8px 32px hsla(230, 75%, 15%, 0.2);
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+  transform: translateY(-1rem);
+  transition: transform 0.4s;
+}
+
+.search__icon {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.search__input {
+  width: 100%;
+  padding-block: 1rem;
+  background-color: var(--container-color);
+  color: white;
+}
+
+.search__input::placeholder {
+  color: white;
+}
+
+/* Show search */
+.show-search {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.show-search .search__form {
+  transform: translateY(0);
+}
+
+#resultsList {
+  list-style: none;
+  margin-left: 335px;
+  margin-right: 100px;
+  margin-bottom: 100px;
+  padding: 0;
+  max-height: 300px; /* Ajustez la hauteur max */
+  overflow-y: auto;
+  background-color: rgb(110, 16, 16); /* Fond sombre */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombre pour un effet élégant */
+  color: #fff; /* Texte blanc */
+  width: 425px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#resultsList::-webkit-scrollbar {
+  display: none; /* Cache la barre de défilement (Chrome, Edge) */
+}
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.result-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.result-image {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.result-title {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result-summary {
+  color: #cccccc;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .search,
+  .login {
+    padding-top: 10rem;
+  }
+
+  .search__form {
+    max-width: 450px;
+    margin-inline: auto;
+  }
+
+  .search__close,
+  .login__close {
+    width: max-content;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    font-size: 2rem;
+  }
+
+  .login__form {
+    max-width: 400px;
+    margin-inline: auto;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    column-gap: 3rem;
+  }
+  .nav__close,
+  .nav__toggle {
+    display: none;
+  }
+  .nav__menu {
+    margin-left: 0;
+  }
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+
+  .login__form {
+    padding: 3rem 2rem 3.5rem;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+}
+
+/*=============== SEARCH ===============*/
+.search {
+  &__form {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    background-color: var(--container-color);
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, 0.2);
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    transform: translateY(-1rem);
+    transition: transform 0.4s;
+  }
+  &__icon {
+    font-size: 1.25rem;
+    color: white;
+  }
+  &__input {
+    width: 100%;
+    padding-block: 1rem;
+    background-color: var(--container-color);
+    color: var(--text-color);
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.slider {
+  position: relative;
+  width: 85%;
+  max-width: 85%;
+  height: 460px;
+  margin: 40px auto; /* Centrage horizontal et marge supérieure/inferieure */
+  overflow: hidden;
+  margin-left: 11%;
+  margin-top:80px
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: auto;
+  opacity: 0.9;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 40%;
+  left: 5%;
+  right: 5%;
+  color: #f2f2f2;
+  text-shadow: 32px 32px 60px rgba(0, 0, 0, 0.7);
+}
+
+.slide-content h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.slider-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff0000;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s ease;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.slider-button:hover {
+  background: #cc0000;
+  transform: scale(1.1);
+}
+
+.slider-button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.anime-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 70px;
+  padding: 20px;
+  background-color: #151515; /* Ajout d'un fond sombre */
+  color: white; /* Couleur du texte */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+}
+
+.anime-details__container {
+  display: flex;
+  margin-left: 7%;
+  width: 100%;
+  flex-direction: column; /* Alignement vertical pour les petits écrans */
+}
+
+.anime-details__image img {
+
+  width: 90%;
+  height: 90%;
+  border-radius: 10px; /* Coins arrondis pour l'image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour l'image */
+}
+
+.anime-details__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.anime-details__image {
+  flex: 0 0 300px; /* Fixe la largeur de l'image */
+  max-width: 100%;
+  margin-right: 0px; /* Espace entre l'image et le texte */
+}
+
+.anime-details__info {
+  flex: 1; /* Prend le reste de l'espace disponible */
+ 
+}
+
+
+.anime-details__info {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrage vertical du contenu */
+  
+}
+
+.anime-details__title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-weight: bold; /* Texte en gras */
+}
+
+.anime-details__date,
+.anime-details__rating,
+.anime-details__summary,
+.anime-details__country,
+.anime-details__genre,
+.anime-details__release {
+  margin-bottom: 10px;
+}
+
+.anime-details__country::before,
+.anime-details__genre::before,
+.anime-details__release::before {
+  margin-right: 5px; /* Espace entre le label et le nom */
+}
+
+.anime-details__rating {
+  display: flex;
+  align-items: center;
+}
+
+#add-to-watchlist {
+  margin-left: 10px; /* Ajustez cette valeur selon vos besoins */
+}
+
+.rating-circle {
+  width: 50px;
+  height: 50px;
+  left: 0;
+  border-radius: 50%;
+  background-color: var(--rating-color-8); /* Couleur de fond du cercle extérieur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.rating-circle__inner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #151515; /* Couleur de fond transparent */
+  backdrop-filter: blur(45px); /* Ajout de flou */
+  -webkit-backdrop-filter: blur(5px); /* Pour Safari */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--rating-color-8); /* Couleur du texte */
+  position: absolute;
+}
+
+.anime-details__summary {
+  text-align: justify; /* Justification du texte */
+  line-height: 1.5; /* Hauteur de ligne pour une meilleure lisibilité */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .anime-details__container {
+    flex-direction: row; /* Alignement horizontal pour les écrans moyens et plus */
+  }
+}
+
+.rating-circle__inner.rating-0 { color: var(--rating-color-0); }
+.rating-circle__inner.rating-1 { color: var(--rating-color-1); }
+.rating-circle__inner.rating-2 { color: var(--rating-color-2); }
+.rating-circle__inner.rating-3 { color: var(--rating-color-3); }
+.rating-circle__inner.rating-4 { color: var(--rating-color-4); }
+.rating-circle__inner.rating-5 { color: var(--rating-color-5); }
+.rating-circle__inner.rating-6 { color: var(--rating-color-6); }
+.rating-circle__inner.rating-7 { color: var(--rating-color-7); }
+.rating-circle__inner.rating-8 { color: var(--rating-color-8); }
+.rating-circle__inner.rating-9 { color: var(--rating-color-9); }
+.rating-circle__inner.rating-10 { color: var(--rating-color-10); }
+
+.rating-circle.rating-0 { background-color: var(--rating-color-0); }
+.rating-circle.rating-1 { background-color: var(--rating-color-1); }
+.rating-circle.rating-2 { background-color: var(--rating-color-2); }
+.rating-circle.rating-3 { background-color: var(--rating-color-3); }
+.rating-circle.rating-4 { background-color: var(--rating-color-4); }
+.rating-circle.rating-5 { background-color: var(--rating-color-5); }
+.rating-circle.rating-6 { background-color: var(--rating-color-6); }
+.rating-circle.rating-7 { background-color: var(--rating-color-7); }
+.rating-circle.rating-8 { background-color: var(--rating-color-8); }
+.rating-circle.rating-9 { background-color: var(--rating-color-9); }
+.rating-circle.rating-10 { background-color: var(--rating-color-10); }
+
+:root {
+  --rating-color-0: #ff0000; /* Rouge */
+  --rating-color-1: #ff3300;
+  --rating-color-2: #ff6600;
+  --rating-color-3: #ff9900;
+  --rating-color-4: #ffcc00;
+  --rating-color-5: #ffff00; /* Jaune */
+  --rating-color-6: #ccff00;
+  --rating-color-7: #99ff00;
+  --rating-color-8: #66ff00;
+  --rating-color-9: #33ff00;
+  --rating-color-10: #00ff00; /* Vert */
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  border: none;
+  border-radius: 15px;
+  left: 0;
+  margin-top: 20px;
+}
+.button:hover {
+  background-color: var(--rating-color-0);
+}
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.container-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-left: 7%;
+}
+
+.container-video iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintient le ratio 16:9 */
+}
+
+/* Pour les petits écrans (téléphones) */
+@media (max-width: 600px) {
+  .container-video iframe {
+    max-width: 100%; /* Prend toute la largeur de l'écran */
+  }
+}
+
+/* Pour les écrans moyens (tablettes) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container-video iframe {
+    max-width: 800px; /* Ajustez cette valeur selon vos besoins */
+  }
+}
+
+/* Pour les grands écrans (ordinateurs de bureau) */
+@media (min-width: 1025px) {
+  .container-video iframe {
+    max-width: 1200px; /* Ajustez cette valeur selon vos besoins */
+  }
+}
+
+
+
+/* Ajoutez ceci à votre fichier style.css */
+.recommended {
+  margin-top: 70px;
+  padding: 20px;
+  background-color: #151515;
+  border-radius: 10px;
+}
+
+.recommended h2 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-left: 7%;
+}
+
+.recommended-container {
+  margin-left: 7%;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recommended-card {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s;
+  position: relative;
+;
+}
+
+.recommended-card img {
+  width: 100%;
+  height: 70%;
+  transition: opacity 0.3s;
+
+}
+
+
+.recommended-info h3 {
+  color: white;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.media-overlay1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.recommended-card:hover .media-overlay1 {
+  opacity: 1;
+}
+
+.recommended-card:hover img {
+  opacity: 0.5;
+}
+
+.recommended-card:hover {
+  transform: translateY(-10px);
+}
+
+.media-info {
+  padding: 10px;
+  color: white;
+}
+
+.media-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 5%;
+}
+
+.media-card {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px; /* Largeur fixe de la carte */
+  text-align: center;
+  background-color: #151515; /* Couleur de fond pour harmoniser */
+  transition: transform 0.3s;
+  position: relative; /* Pour positionner le type en bas à droite */
+}
+
+
+.media-image {
+  width: 100%; /* Prend toute la largeur disponible */
+  height: 300px; /* Hauteur fixe */
+  object-fit: cover; /* Adapte l'image à la carte tout en remplissant l'espace */
+  transition: opacity 0.3s; /* Ajout d'une animation fluide */
+}
+.media-card:hover .media-image {
+  opacity: 0.5; /* Assombrit l'image au survol */
+}
+
+
+.media-info {
+  padding: 5px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.media-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.media-duration,
+.media-year {
+  margin: 0;
+}
+
+.media-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0 30px;
+}
+
+.media-genre {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  font-size: 12px;
+  color: #fff;
+  padding: 0px 10px;
+}
+
+.media-type {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+
+.next-page-button,
+.prev-page-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-left: 48%;
+  margin-top: 3%;
+}
+
+.next-page-button:hover,
+.prev-page-button:hover {
+  background-color: #cc0000;
+}
+
+
+/* Styles pour les sections de saisons et d'épisodes */
+.seasons, .episodes {
+  background-color: #151515;
+  border-radius: 10px;
+  margin-left: 7%;
+}
+
+.seasons__list, .episodes__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.episodes__list {
+  margin-left: 5%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  padding: 10px 20px;
+  background-color: rgb(110, 16, 16);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px; /* Augmente la taille de la police */
+  font-weight: bold; /* Rend le texte en gras */
+  margin-top: 10px;
+}
+
+.dropbtn:hover {
+  background-color: #cc0000;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #151515;
+  max-width: 160px;
+  max-height: 200px; /* Définir une hauteur maximale */
+  overflow-y: auto; /* Activer le défilement vertical */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content::-webkit-scrollbar {
+  width: 8px; /* Largeur de la barre de défilement */
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background-color: #cc0000; /* Couleur de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis de la barre de défilement */
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: #cc0000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.episode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #151515;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+  position: relative; /* Ajouté pour positionner le numéro de l'épisode */
+}
+
+.episode img {
+  width: 200px; /* Largeur plus grande */
+  height: 115px; /* Hauteur plus petite */
+  border-radius: 5px;
+}
+
+.episode-title {
+  color: white;
+  margin: 5px 0;
+}
+
+
+.episode-number  {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: white;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+.episode-image-container img {
+  transition: opacity 0.3s;
+}
+
+.episode-image-container:hover img {
+  opacity: 0.5; /* Assombrit l'image au survol */
+}
+
+.media-overlay2 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 48px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.episode-image-container:hover .media-overlay2 {
+  opacity: 1; /* Affiche l'icône au survol */
+}
+
+
+.season-card {
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.season-card-image-container {
+  position: relative;
+}
+
+.season-card-image-container img {
+  width: 200px; /* Largeur plus grande */
+  height: 115px; /* Hauteur plus petite */
+  border-radius: 5px;
+}
+
+.season-card-title {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.watchlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-left: 10%;
+  margin-top: 60px;
+}
+
+.WatchList-Button{
+  margin-bottom: 5px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  border: none;
+  border-radius: 15px;
+  left: 0;
+
+}
+
+
+.WatchList-Button:hover {
+  background-color: var(--rating-color-0);
+}
+.watchlist-card {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px; /* Largeur fixe de la carte */
+  text-align: center;
+  background-color: #151515; /* Couleur de fond pour harmoniser */
+  transition: transform 0.3s;
+  position: relative; /* Pour positionner le type en bas à droite */
+}
+
+.watchlist-card:hover {
+  transform: scale(1.05);
+}
+
+.watchlist-card img {
+  width: 100%;
+  height: auto;
+}
+
+.watchlist-card .media-info {
+  padding: 10px;
+}
+
+
+.watchlist-card {
+  position: relative;
+}
+
+.remove-button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #f2f2f2;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+
+.watchlist {
+  padding: 20px;
+  background-color: #151515; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre pour un effet visuel */
+  margin: 20px; /* Marge autour de la section */
+  margin-left: 7%;
+}
+
+.watchlist-container-horizontal {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+  background-color: #151515; /* Couleur de fond */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+}
+
+
+
+.watchlist-card-horizontal {
+  flex: 0 0 auto;
+  width: 200px; /* Largeur fixe de la carte */
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  background-color: #151515; /* Couleur de fond pour harmoniser */
+  transition: transform 0.3s;
+  position: relative; /* Pour positionner le type en bas à droite */
+}
+
+.watchlist-card-horizontal:hover {
+  transform: scale(1.05);
+}
+
+.watchlist-card-horizontal img {
+  width: 100%;
+  height: auto;
+}
+
+.watchlist-card-horizontal .media-info {
+  padding: 10px;
+}
+
+.watchlist-card-horizontal .remove-button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #f2f2f2;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+
+/* Style de la scrollbar verticale */
+body::-webkit-scrollbar {
+  width: 12px; /* Largeur de la scrollbar verticale */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ff0000; /* Couleur de la barre de défilement */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #151515; /* Couleur de fond de la piste */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+/* Style de la scrollbar horizontale */
+.watchlist-container-horizontal::-webkit-scrollbar {
+  height: 12px; /* Hauteur de la scrollbar horizontale */
+}
+
+.watchlist-container-horizontal::-webkit-scrollbar-thumb {
+  background-color: #ff0000; /* Couleur de la barre de défilement */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+.watchlist-container-horizontal::-webkit-scrollbar-track {
+  background-color: #151515; /* Couleur de fond de la piste */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+/* Masquer la scrollbar verticale sur mobile */
+@media (max-width: 600px) {
+  body::-webkit-scrollbar {
+    display: none; /* Cache la scrollbar verticale */
+  }
+  .nav__menu {
+    display: none;
+  }
+}
+
+
